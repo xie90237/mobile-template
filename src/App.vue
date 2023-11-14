@@ -1,12 +1,12 @@
 <script setup lang="ts">
 onLaunch(() => {
-  $log('onLaunch')
+  console.log('onLaunch')
 })
 onShow(() => {
-  $log('onShow')
+  console.log('onShow')
 })
 onHide(() => {
-  $log('onHide')
+  console.log('onHide')
 })
 </script>
 <style lang="scss">

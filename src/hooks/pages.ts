@@ -16,7 +16,7 @@ export function useQuery<T extends definePage = definePage>(
     const search = getCurrentPages().pop()?.['$page']?.fullPath.split('?').pop()
     query.value = parseObject(qs.parse(decodeURIComponent(search)))
     fn?.(query.value)
-  }).catch(err => $error<'参数接收'>('获取失败', err))
+  }).catch(err => console.error('[参数接收]', '获取失败', err))
 
   return query
 }

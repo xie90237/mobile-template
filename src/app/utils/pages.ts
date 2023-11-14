@@ -28,9 +28,9 @@ let to = debounce(
     let query = qs.stringify(pkg, { addQueryPrefix: true })
     uni
       .navigateTo({ url: url + query })
-      .then(() => $log<'页面切换'>(path === url ? path : `${path} (${url})`, obj))
+      .then(() => console.log('[页面切换]', path === url ? path : `${path} (${url})`, obj))
       .catch(() => uni.switchTab({ url: url + query }))
-      .catch(err => $error<'页面切换失败'>(path, err))
+      .catch(err => console.error('[页面切换]', path, err))
     return new Promise<any>((r, e) => (uni.$once(id + '_resolve', r), uni.$once(id + '_reject', e)))
   },
   50,
@@ -42,7 +42,7 @@ let to = debounce(
 
 const back = debounce(
   (data: any = {}, type: 'resolve' | 'reject' = 'resolve') => {
-    if (data) $log<'页面回调'>(data)
+    if (data) console.log('[页面回调]', data)
     const query = useQuery()
     if (type === 'resolve')
       uni.$emit(`${query.value.__spm_id}_resolve`, { ...data, from: 'navigateBack' })
